@@ -1,0 +1,30 @@
+/* index.css */
+
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+  background-color: #f8f9fa; /* Light background for better contrast */
+  color: #333; /* Default text color */
+}
+
+h1, h2, h3 {
+  color: #007bff; /* Primary color for headings */
+}
+
+a {
+  text-decoration: none;
+  color: #007bff;
+}
+
+a:hover {
+  color: #0056b3; /* Darker shade on hover */
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px; /* Centered container */
+  margin: auto;
+  padding: 20px;
+}
