@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 const Scripts = () => (
   <React.Fragment>
@@ -19,3 +19,4 @@ const Scripts = () => (
 );
 
 export default Scripts;
+// #95c12c
