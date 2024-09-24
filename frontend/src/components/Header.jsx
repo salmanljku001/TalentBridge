@@ -158,10 +158,23 @@
 // export default Header;
 
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link,useNavigate  } from "react-router-dom";
+import axios from "axios";
 
-const Header = ({ user }) => {
+const Header = ({ user,setUser  }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const navigate = useNavigate();
+  const handleLogout = async () => {
+    try {
+      console.log('salman')
+      await axios.post("http://127.0.0.1:8000/users/api/logout/");
+      setUser(null); // Clear the user state
+      localStorage.removeItem("user"); // Remove user from local storage
+      navigate("/"); // Redirect to home
+    } catch (error) {
+      console.error("Logout failed", error);
+    }
+  };
 
   return (
     <header className="bg-lime-400 p-4 h-18">
@@ -210,7 +223,7 @@ const Header = ({ user }) => {
 
         {/* Desktop User Options */}
         <div className="hidden xl:flex items-center space-x-4">
-          {user && user.role === "employer" ? (
+          {user && user.type === "employer" ? (
             <>
               <Link
                 to="/create-job"
@@ -233,7 +246,7 @@ const Header = ({ user }) => {
                   </li>
                   <li>
                     <Link
-                      to="/logout"
+                    onClick={handleLogout}
                       className="block px-4 py-2 hover:bg-gray-200"
                     >
                       Logout
@@ -274,7 +287,7 @@ const Header = ({ user }) => {
                   </li>
                   <li>
                     <Link
-                      to="/logout"
+                      onClick={handleLogout}
                       className="block px-4 py-2 hover:bg-gray-200"
                     >
                       Logout

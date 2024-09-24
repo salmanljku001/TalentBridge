@@ -8,7 +8,6 @@ const Home = () => (
       <p className="text-xl mt-2">Your gateway to finding the perfect job.</p>
     </div>
     <StatsSection />
-    <Footer />
   </div>
 );
 

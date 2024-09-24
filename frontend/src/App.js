@@ -9,8 +9,8 @@ import About from "./components/About";
 import JobListings from "./components/JobListings";
 import Contact from "./components/Contact";
 import Login from "./components/Login";
-import Eereg from "./components/Eereg";
-import Erreg from "./components/Erreg";
+import Eereg from "./components/Eereg";  // Jobseeker Registration
+import Erreg from "./components/Erreg";  // Employer Registration
 import JobListingee from "./components/JobListingee";
 import Jobdetails from "./components/Jobdetails";
 
@@ -25,24 +25,30 @@ const App = () => {
     fetchUser();
   }, []);
 
+  const handleUserUpdate = (user) => {
+    setUser(user);
+    localStorage.setItem("user", JSON.stringify(user));
+  };
+
   return (
     <Router>
       <React.Fragment>
         <Head />
-        <Header user={user} />
+        <Header user={user} setUser={setUser} />
         <main id="main">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/job-listings" element={<JobListings />} />
             <Route path="/contact" element={<Contact />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/Erreg" element={<Erreg />} />
-            <Route path="/Eereg" element={<Eereg />} />
-            <Route path="/job-listingsE" element={<JobListingee />} />
+            <Route path="/login" element={<Login onUserUpdate={handleUserUpdate} />} />
+            <Route path="/eereg" element={<Eereg />} />
+            <Route path="/erreg" element={<Erreg />} />
+            <Route path="/job-listings-e" element={<JobListingee />} />
             <Route path="/job-details" element={<Jobdetails />} />
           </Routes>
         </main>
+        <Footer />
         <Scripts />
       </React.Fragment>
     </Router>

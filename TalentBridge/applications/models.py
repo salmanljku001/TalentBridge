@@ -14,6 +14,7 @@ class Application(models.Model):
     job = models.ForeignKey(Job, on_delete=models.CASCADE, related_name='applications')
     jobseeker = models.ForeignKey(Jobseeker, on_delete=models.CASCADE, related_name='applications')
     application_status = models.CharField(max_length=20, choices=APPLICATION_STATUS_CHOICES, default='applied')
+    # resume_url=models.FileField(upload_to='/resumes')
     applied_at = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
