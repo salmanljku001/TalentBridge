@@ -1,172 +1,13 @@
-// import { Link } from "react-router-dom";
-// import React from "react";
-
-// const Header = ({ user }) => {
-//   return (
-//     <header className="bg-lime-400 p-4 h-18">
-//       <div className="container mx-auto flex justify-between items-center">
-//         <div className="text-white text-2xl font-bold">
-//           <Link to="/">TalentBridge</Link>
-//         </div>
-
-//         <nav className="hidden xl:flex space-x-6">
-//           <Link
-//             to="/"
-//             className="text-white font-medium hover:text-[#008bf8] transition-all"
-//           >
-//             <span className="mr-2 icon-home"></span> Home
-//           </Link>
-//           <Link
-//             to="/about"
-//             className="text-white font-medium hover:text-[#008bf8] transition-all"
-//           >
-//             <span className="mr-2 icon-info_outline"></span> About
-//           </Link>
-//           <Link
-//             to="/job-listings"
-//             className="text-white font-medium hover:text-[#008bf8] transition-all"
-//           >
-//             <span className="mr-2 icon-briefcase"></span> Job Listings
-//           </Link>
-//           <Link
-//             to="/contact"
-//             className="text-white font-medium hover:text-[#008bf8] transition-all"
-//           >
-//             <span className="mr-2 icon-contact_mail"></span> Contact
-//           </Link>
-//         </nav>
-
-//         <div className="xl:hidden flex items-center">
-//           <button className="text-white focus:outline-none">
-//             <span className="icon-menu text-3xl"></span>
-//           </button>
-//         </div>
-
-//         <div className="hidden xl:flex items-center space-x-4">
-//           {user && user.role === "employer" ? (
-//             <>
-//               <Link
-//                 to="/create-job"
-//                 className="text-white border border-white px-4 py-2 rounded-lg hover:bg-white hover:text-gray-800 transition"
-//               >
-//                 <span className="mr-2 icon-add"></span> Publish Job
-//               </Link>
-//               <div className="relative group">
-//                 <Link to="/dashboard" className="text-white font-medium">
-//                   Dashboard
-//                 </Link>
-//                 <ul className="absolute hidden group-hover:block bg-white text-gray-800 shadow-lg mt-2 py-2 rounded-lg">
-//                   <li>
-//                     <Link
-//                       to="/dashboard"
-//                       className="block px-4 py-2 hover:bg-gray-200"
-//                     >
-//                       Dashboard
-//                     </Link>
-//                   </li>
-//                   <li>
-//                     <Link
-//                       to="/logout"
-//                       className="block px-4 py-2 hover:bg-gray-200"
-//                     >
-//                       Logout
-//                     </Link>
-//                   </li>
-//                 </ul>
-//               </div>
-//             </>
-//           ) : user ? (
-//             <>
-//               <div className="relative group">
-//                 <Link to="/profile" className="text-white font-medium">
-//                   Profile
-//                 </Link>
-//                 <ul className="absolute hidden group-hover:block bg-white text-gray-800 shadow-lg mt-2 py-2 rounded-lg">
-//                   <li>
-//                     <Link
-//                       to={`/edit-profile/${user.id}`}
-//                       className="block px-4 py-2 hover:bg-gray-200"
-//                     >
-//                       Edit Settings
-//                     </Link>
-//                   </li>
-//                 </ul>
-//               </div>
-//               <div className="relative group">
-//                 <Link to="/dashboard" className="text-white font-medium">
-//                   Dashboard
-//                 </Link>
-//                 <ul className="absolute hidden group-hover:block bg-white text-gray-800 shadow-lg mt-2 py-2 rounded-lg">
-//                   <li>
-//                     <Link
-//                       to="/dashboard"
-//                       className="block px-4 py-2 hover:bg-gray-200"
-//                     >
-//                       Dashboard
-//                     </Link>
-//                   </li>
-//                   <li>
-//                     <Link
-//                       to="/logout"
-//                       className="block px-4 py-2 hover:bg-gray-200"
-//                     >
-//                       Logout
-//                     </Link>
-//                   </li>
-//                 </ul>
-//               </div>
-//             </>
-//           ) : (
-//             <>
-//               <div className="relative group">
-//                 <Link to="/register" className="text-white font-medium">
-//                   Register
-//                 </Link>
-//                 <ul className="absolute hidden group-hover:block bg-white text-gray-800 shadow-lg mt-2 py-2 rounded-lg">
-//                   <li>
-//                     <Link
-//                       to="/Erreg"
-//                       className="block px-4 py-2 hover:bg-gray-200"
-//                     >
-//                       Employer
-//                     </Link>
-//                   </li>
-//                   <li>
-//                     <Link
-//                       to="/Eereg"
-//                       className="block px-4 py-2 hover:bg-gray-200"
-//                     >
-//                       Employee
-//                     </Link>
-//                   </li>
-//                 </ul>
-//               </div>
-//               <Link
-//                 to="/login"
-//                 className="bg-blue-500 text-white px-4 py-2 rounded-lg ml-4 hover:bg-blue-700 transition"
-//               >
-//                 <span className="mr-2 icon-lock_outline"></span> Log In
-//               </Link>
-//             </>
-//           )}
-//         </div>
-//       </div>
-//     </header>
-//   );
-// };
-
-// export default Header;
-
 import React, { useState } from "react";
-import { Link,useNavigate  } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
-const Header = ({ user,setUser  }) => {
+const Header = ({ user, setUser }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const navigate = useNavigate();
   const handleLogout = async () => {
     try {
-      console.log('salman')
+      console.log("salman");
       await axios.post("http://127.0.0.1:8000/users/api/logout/");
       setUser(null); // Clear the user state
       localStorage.removeItem("user"); // Remove user from local storage
@@ -197,12 +38,7 @@ const Header = ({ user,setUser  }) => {
           >
             <span className="mr-2 icon-info_outline"></span> About
           </Link>
-          <Link
-            to="/job-listings"
-            className="text-white font-medium hover:text-[#008bf8] transition-all"
-          >
-            <span className="mr-2 icon-briefcase"></span> Job Listings
-          </Link>
+
           <Link
             to="/contact"
             className="text-white font-medium hover:text-[#008bf8] transition-all"
@@ -226,7 +62,7 @@ const Header = ({ user,setUser  }) => {
           {user && user.type === "employer" ? (
             <>
               <Link
-                to="/create-job"
+                to="/post-job"
                 className="text-white border border-white px-4 py-2 rounded-lg hover:bg-white hover:text-gray-800 transition"
               >
                 <span className="mr-2 icon-add"></span> Publish Job
@@ -246,7 +82,7 @@ const Header = ({ user,setUser  }) => {
                   </li>
                   <li>
                     <Link
-                    onClick={handleLogout}
+                      onClick={handleLogout}
                       className="block px-4 py-2 hover:bg-gray-200"
                     >
                       Logout
@@ -298,7 +134,7 @@ const Header = ({ user,setUser  }) => {
             </>
           ) : (
             <>
-              <div className="relative group">
+              {/* <div className="relative group">
                 <Link to="/register" className="text-white font-medium">
                   Register
                 </Link>
@@ -320,7 +156,18 @@ const Header = ({ user,setUser  }) => {
                     </Link>
                   </li>
                 </ul>
+              </div> */}
+              <div className="relative">
+                <select
+                  className="text-white font-medium bg-gray-800 rounded-md py-2 px-3"
+                  onChange={(e) => (window.location.href = e.target.value)}
+                >
+                  <option value="/">Register</option>
+                  <option value="/Erreg">Employer</option>
+                  <option value="/Eereg">Employee</option>
+                </select>
               </div>
+
               <Link
                 to="/login"
                 className="bg-blue-500 text-white px-4 py-2 rounded-lg ml-4 hover:bg-blue-700 transition text-center"
@@ -332,7 +179,6 @@ const Header = ({ user,setUser  }) => {
         </div>
       </div>
 
-      {/* Mobile Menu (Only visible when open) */}
       {isMobileMenuOpen && (
         <nav className="xl:hidden bg-lime-400 p-4">
           <ul className="space-y-4">
@@ -354,15 +200,7 @@ const Header = ({ user,setUser  }) => {
                 About
               </Link>
             </li>
-            <li>
-              <Link
-                to="/job-listings"
-                className="text-white font-medium hover:text-[#008bf8] transition-all"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                Job Listings
-              </Link>
-            </li>
+
             <li>
               <Link
                 to="/contact"

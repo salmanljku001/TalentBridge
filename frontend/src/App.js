@@ -9,10 +9,12 @@ import About from "./components/About";
 import JobListings from "./components/JobListings";
 import Contact from "./components/Contact";
 import Login from "./components/Login";
-import Eereg from "./components/Eereg";  // Jobseeker Registration
-import Erreg from "./components/Erreg";  // Employer Registration
+import Eereg from "./components/Eereg"; // Jobseeker Registration
+import Erreg from "./components/Erreg"; // Employer Registration
 import JobListingee from "./components/JobListingee";
 import Jobdetails from "./components/Jobdetails";
+import JobPost from "./components/JobPost";
+import Applied from "./components/Applied";
 
 const App = () => {
   const [user, setUser] = useState(null);
@@ -41,14 +43,18 @@ const App = () => {
             <Route path="/about" element={<About />} />
             <Route path="/job-listings" element={<JobListings />} />
             <Route path="/contact" element={<Contact />} />
-            <Route path="/login" element={<Login onUserUpdate={handleUserUpdate} />} />
+            <Route
+              path="/login"
+              element={<Login onUserUpdate={handleUserUpdate} />}
+            />
             <Route path="/eereg" element={<Eereg />} />
             <Route path="/erreg" element={<Erreg />} />
             <Route path="/job-listings-e" element={<JobListingee />} />
-            <Route path="/job-details" element={<Jobdetails />} />
+            <Route path="/job-details/:id" element={<Jobdetails />} />
+            <Route path="/post-job" element={<JobPost />} />
+            <Route path="/applied" element={<Applied />} />
           </Routes>
         </main>
-        <Footer />
         <Scripts />
       </React.Fragment>
     </Router>
@@ -56,3 +62,5 @@ const App = () => {
 };
 
 export default App;
+
+// employer -- joblisting ema je job aave ema kone kone apply karyu e details aave ane ema button aavu joiye accept, reject and resume nu pn btavu joiye

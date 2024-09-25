@@ -1,29 +1,50 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import Footer from "./Footer";
-const JobListings = () => (
-  <div>
-    <div className="my-10 max-w-3xl mx-auto">
-      <h2 className="text-3xl font-bold text-gray-800 mb-6">Job Listings</h2>
+import { Link } from "react-router-dom";
 
-      <div className="border border-gray-200 p-6 mb-5 rounded-lg bg-white hover:shadow-lg transition-shadow duration-300">
-        <h3 className="text-2xl text-blue-600 font-semibold">
-          Software Engineer
-        </h3>
-        <p className="mt-3 text-gray-700 leading-relaxed">
-          Looking for a skilled software engineer with experience in React and
-          Node.js.
-        </p>
-      </div>
+const JobListings = () => {
+  const [jobs, setJobs] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-      <div className="border border-gray-200 p-6 mb-5 rounded-lg bg-white hover:shadow-lg transition-shadow duration-300">
-        <h3 className="text-2xl text-blue-600 font-semibold">Web Developer</h3>
-        <p className="mt-3 text-gray-700 leading-relaxed">
-          Join our team as a web developer, focusing on front-end development.
-        </p>
+  useEffect(() => {
+    const fetchJobs = async () => {
+      try {
+        const response = await axios.get('http://127.0.0.1:8000/jobs/api/employer-jobs',{params:{'username':JSON.parse(localStorage.getItem('user')).username}}); // Replace with your API endpoint
+        setJobs(response.data); // Assuming response.data is an array of job listings
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchJobs();
+  }, []);
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
+
+  return (
+    <div>
+      <div className="my-10 max-w-3xl mx-auto">
+        <h2 className="text-3xl font-bold text-gray-800 mb-6">Job Listings</h2>
+
+        {jobs.map((job) => (
+          <div key={job.id} className="border border-gray-200 p-6 mb-5 rounded-lg bg-white hover:shadow-lg transition-shadow duration-300">
+            <Link to={`/jobs/${job.id}`} className="text-2xl text-blue-600 font-semibold">
+              <h3>{job.title}</h3>
+            </Link>
+            <p className="mt-3 text-gray-700 leading-relaxed">
+              {job.description}
+            </p>
+          </div>
+        ))}
       </div>
+      <Footer />
     </div>
-    <Footer />
-  </div>
-);
+  );
+};
 
 export default JobListings;

@@ -15,7 +15,7 @@ const Erreg = () => {
     contact_person_phone: "",
   });
 
-  const navigate=useNavigate()
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -25,15 +25,21 @@ const Erreg = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://127.0.0.1:8000/users/api/register-employer/", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
+      const response = await axios.post(
+        "http://127.0.0.1:8000/users/api/register-employer/",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
         }
-      });
+      );
       console.log("Registration successful:", response.data);
-      navigate('login/')
+
+      // Redirect to job listings page after success
+      window.location.href = "http://localhost:3000/job-listings";
     } catch (error) {
-      console.error("Error:", error.response.data);
+      console.error("Error:", error.response?.data || error.message);
     }
   };
 

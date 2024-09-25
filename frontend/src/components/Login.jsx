@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import axios from "axios";
 import Footer from "./Footer";
+import { useNavigate } from "react-router-dom";
 
 const Login = ({ onUserUpdate }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const navigate=useNavigate()
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -18,7 +20,7 @@ const Login = ({ onUserUpdate }) => {
 
       console.log("Login successful:", response.data);
       onUserUpdate(response.data.user); // Update user state
-      // Redirect or perform other actions after successful login
+      navigate("/")
     } catch (error) {
       setErrorMessage(error.response?.data?.error || "Login failed");
     }
