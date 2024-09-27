@@ -36,7 +36,6 @@ const Erreg = () => {
       );
       console.log("Registration successful:", response.data);
 
-      // Redirect to job listings page after success
       window.location.href = "http://localhost:3000/job-listings";
     } catch (error) {
       console.error("Error:", error.response?.data || error.message);

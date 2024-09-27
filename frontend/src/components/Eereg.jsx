@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import {useNavigate  } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Footer from "./Footer";
 
@@ -14,7 +14,7 @@ const Eereg = () => {
     contactNumber: "",
   });
 
-  const navigate=useNavigate()
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -24,14 +24,17 @@ const Eereg = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://127.0.0.1:8000/users/api/register-jobseeker/", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
+      const response = await axios.post(
+        "http://127.0.0.1:8000/users/api/register-jobseeker/",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
         }
-      });
+      );
       console.log("Registration successful:", response.data);
-      navigate('login/')
-      
+      navigate("login/");
     } catch (error) {
       console.error("Error:", error.response.data);
     }

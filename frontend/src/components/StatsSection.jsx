@@ -3,7 +3,7 @@ import React from "react";
 const StatsSection = () => {
   return (
     <div className="bg-lime-400 py-12 text-center">
-      <h2 className="text-white text-2xl font-bold mb-4">DJobPortal Stats</h2>
+      <h2 className="text-white text-2xl font-bold mb-4">TalentBridge Stats</h2>
       <p className="text-white mb-8 text-center">
         Lorem ipsum dolor sit amet consectetur adipiscing elit. Expedita unde
         officiis recusandae sequi excepturi corrupti.

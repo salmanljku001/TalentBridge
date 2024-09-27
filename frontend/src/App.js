@@ -15,6 +15,7 @@ import JobListingee from "./components/JobListingee";
 import Jobdetails from "./components/Jobdetails";
 import JobPost from "./components/JobPost";
 import Applied from "./components/Applied";
+import EmployeeApplication from "./components/EmployeeApplication";
 
 const App = () => {
   const [user, setUser] = useState(null);
@@ -53,6 +54,10 @@ const App = () => {
             <Route path="/job-details/:id" element={<Jobdetails />} />
             <Route path="/post-job" element={<JobPost />} />
             <Route path="/applied" element={<Applied />} />
+            <Route
+              path="/EmployeeApplication"
+              element={<EmployeeApplication />}
+            />
           </Routes>
         </main>
         <Scripts />
